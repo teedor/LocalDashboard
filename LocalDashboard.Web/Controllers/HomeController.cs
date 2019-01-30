@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DashboardServices;
+using LocalDashboard.Web.Wrappers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,18 @@ namespace LocalDashboard.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IDashBoardService _dashBoardService;
+        private readonly IHttpContextWrapper _httpContextWrapper;
+
+        public HomeController(IDashBoardService dashBoardService, IHttpContextWrapper httpContextWrapper)
+        {
+            _dashBoardService = dashBoardService;
+            _httpContextWrapper = httpContextWrapper;
+        }
+
         public ActionResult Index()
         {
+            var model = _dashBoardService.GetDashboardModel(_httpContextWrapper.IpAddress);
             return View();
         }
 
