@@ -290,10 +290,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DashboardModels\DashboardModels.csproj">
-      <Project>{75B33957-98AF-48A6-9282-25BEF173E99D}</Project>
-      <Name>DashboardModels</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DashboardServices\DashboardServices.csproj">
       <Project>{32161EA9-5D68-4130-A750-B1C1E86DC02C}</Project>
       <Name>DashboardServices</Name>

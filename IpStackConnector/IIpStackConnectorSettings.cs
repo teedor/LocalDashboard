@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DashboardServices
+namespace Connectors.IpStack
 {
-    public interface IDashboardService
+    public interface IIpStackConnectorSettings
     {
-        DashboardModel GetDashboardModel(string ipAddress);
+        string IpStackAccessKey { get; }
     }
 }

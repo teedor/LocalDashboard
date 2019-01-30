@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DashboardModels
+namespace Connectors.IpStack
 {
-    public class DashboardModel
+    public interface IIpStackConnector
     {
-        public DateTime LocalTime { get; set; }
+        IpStackDetails GetIpStackResponse(string ipAddress);
     }
 }

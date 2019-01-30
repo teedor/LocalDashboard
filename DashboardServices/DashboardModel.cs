@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DashboardServices
 {
-    public interface IDashboardService
+    public class DashboardModel
     {
-        DashboardModel GetDashboardModel(string ipAddress);
+        public DateTime LocalTime { get; set; }
     }
 }

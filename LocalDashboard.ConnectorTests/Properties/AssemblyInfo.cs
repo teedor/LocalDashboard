@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DashboardModels")]
+[assembly: AssemblyTitle("LocalDashboard.ConnectorTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DashboardModels")]
+[assembly: AssemblyProduct("LocalDashboard.ConnectorTests")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("75b33957-98af-48a6-9282-25bef173e99d")]
+[assembly: Guid("99b9a221-0566-4a39-94a4-9a4b43480869")]
 
 // Version information for an assembly consists of the following four values:
 //
