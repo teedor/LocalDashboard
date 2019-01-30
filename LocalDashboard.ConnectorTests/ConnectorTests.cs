@@ -25,5 +25,19 @@ namespace LocalDashboard.ConnectorTests
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void OpenWeatherMapConnectorTest()
+        {
+            // Arrange
+            var settings = new DashboardSettingsWrapper();
+            var ipStackConnector = new IpStackConnector(settings);
+
+            // Act
+            var result = ipStackConnector.GetIpStackResponse("185.69.144.1");
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
