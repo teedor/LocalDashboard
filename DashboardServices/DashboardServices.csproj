@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DashboardService.cs" />
-    <Compile Include="IDashBoardService.cs" />
+    <Compile Include="IDashboardService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

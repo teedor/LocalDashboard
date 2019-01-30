@@ -10,10 +10,10 @@ namespace LocalDashboard.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDashBoardService _dashBoardService;
+        private readonly IDashboardService _dashBoardService;
         private readonly IHttpContextWrapper _httpContextWrapper;
 
-        public HomeController(IDashBoardService dashBoardService, IHttpContextWrapper httpContextWrapper)
+        public HomeController(IDashboardService dashBoardService, IHttpContextWrapper httpContextWrapper)
         {
             _dashBoardService = dashBoardService;
             _httpContextWrapper = httpContextWrapper;
@@ -22,7 +22,7 @@ namespace LocalDashboard.Web.Controllers
         public ActionResult Index()
         {
             var model = _dashBoardService.GetDashboardModel(_httpContextWrapper.IpAddress);
-            return View();
+            return View(model);
         }
 
         public ActionResult About()

@@ -7,7 +7,7 @@ using DashboardModels;
 
 namespace DashboardServices
 {
-    public class DashboardService : IDashBoardService
+    public class DashboardService : IDashboardService
     {
         public DashboardModel GetDashboardModel(string ipAddress)
         {

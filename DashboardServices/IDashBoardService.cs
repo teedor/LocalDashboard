@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DashboardServices
 {
-    public interface IDashBoardService
+    public interface IDashboardService
     {
         DashboardModel GetDashboardModel(string ipAddress);
     }
