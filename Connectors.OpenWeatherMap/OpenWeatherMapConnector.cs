@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HelperClasses;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace Connectors.OpenWeatherMap
     public class OpenWeatherMapConnector : IOpenWeatherMapConnector
     {
         private readonly IOpenWeatherMapConnectorSettings _openWeatherMapConnectorSettings;
+        private readonly IDateHelper _dateHelper;
 
-        public OpenWeatherMapConnector(IOpenWeatherMapConnectorSettings openWeatherMapConnectorSettings)
+        public OpenWeatherMapConnector(IOpenWeatherMapConnectorSettings openWeatherMapConnectorSettings, IDateHelper dateHelper)
         {
             _openWeatherMapConnectorSettings = openWeatherMapConnectorSettings;
+            _dateHelper = dateHelper;
         }
 
         public OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string longitude)
@@ -28,8 +31,8 @@ namespace Connectors.OpenWeatherMap
             {
                 Description = openWeatherMapApiResponseModel.weather[0].main,
                 Temperature = openWeatherMapApiResponseModel.main.temp,
-                SunRiseTime = openWeatherMapApiResponseModel.sys.sunrise,
-                SunSetTime = openWeatherMapApiResponseModel.sys.sunset
+                SunRiseTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunrise),
+                SunSetTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunset)
             };
 
             return result;

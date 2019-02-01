@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Connectors.OpenWeatherMap;
+using HelperClasses;
 
 namespace LocalDashboard.ConnectorTests
 {
@@ -32,7 +33,8 @@ namespace LocalDashboard.ConnectorTests
         {
             // Arrange
             var settings = new DashboardSettingsWrapper();
-            var openWeatherMapConnector = new OpenWeatherMapConnector(settings);
+            var dateHelper = new DateHelper();
+            var openWeatherMapConnector = new OpenWeatherMapConnector(settings, dateHelper);
 
             // Act
             var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2");

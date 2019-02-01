@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDashboard.ConnectorTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectors.OpenWeatherMap", "Connectors.OpenWeatherMap\Connectors.OpenWeatherMap.csproj", "{E8648AC0-15C4-49D2-8082-6C49400FE4EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperClasses", "HelperClasses\HelperClasses.csproj", "{518A2471-15B5-4475-8715-C2ECD6EAE073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperClassesUnitTests", "HelperClassesUnitTests\HelperClassesUnitTests.csproj", "{D2C71FE5-E058-438D-8D41-1A9E5AF2A668}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{E8648AC0-15C4-49D2-8082-6C49400FE4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8648AC0-15C4-49D2-8082-6C49400FE4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8648AC0-15C4-49D2-8082-6C49400FE4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{518A2471-15B5-4475-8715-C2ECD6EAE073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{518A2471-15B5-4475-8715-C2ECD6EAE073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{518A2471-15B5-4475-8715-C2ECD6EAE073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{518A2471-15B5-4475-8715-C2ECD6EAE073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2C71FE5-E058-438D-8D41-1A9E5AF2A668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C71FE5-E058-438D-8D41-1A9E5AF2A668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C71FE5-E058-438D-8D41-1A9E5AF2A668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C71FE5-E058-438D-8D41-1A9E5AF2A668}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
