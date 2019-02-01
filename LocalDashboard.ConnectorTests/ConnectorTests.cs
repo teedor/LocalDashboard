@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Connectors.OpenWeatherMap;
 using HelperClasses;
+using Connectors.TimeZoneDb;
 
 namespace LocalDashboard.ConnectorTests
 {
@@ -37,7 +38,22 @@ namespace LocalDashboard.ConnectorTests
             var openWeatherMapConnector = new OpenWeatherMapConnector(settings, dateHelper);
 
             // Act
-            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2");
+            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2", 3600);
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void TimeZoneDbConnectorTest()
+        {
+            // Arrange
+            var dateHelper = new DateHelper();
+            var settings = new DashboardSettingsWrapper();
+            var timeZoneDbConnector = new TimeZoneDbConnector(dateHelper, settings);
+
+            // Act
+            var result = timeZoneDbConnector.GetTimeZoneDbDetails("15", "2");
 
             // Assert
             Assert.IsNotNull(result);

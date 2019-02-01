@@ -20,7 +20,7 @@ namespace Connectors.OpenWeatherMap
             _dateHelper = dateHelper;
         }
 
-        public OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string longitude)
+        public OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string longitude, int gmtOffset)
         {
             var restClient = new RestClient("https://api.openweathermap.org/data/2.5/weather");
             var request = new RestRequest($"?lat={latitude}&lon={longitude}&APPID={_openWeatherMapConnectorSettings.OpenWeatherMapApiKey}&units=metric", Method.GET);
@@ -31,8 +31,8 @@ namespace Connectors.OpenWeatherMap
             {
                 Description = openWeatherMapApiResponseModel.weather[0].main,
                 Temperature = openWeatherMapApiResponseModel.main.temp,
-                SunRiseTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunrise),
-                SunSetTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunset)
+                SunRiseTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunrise).AddSeconds(gmtOffset),
+                SunSetTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunset).AddSeconds(gmtOffset)
             };
 
             return result;
