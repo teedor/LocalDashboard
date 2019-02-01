@@ -8,6 +8,6 @@ namespace Connectors.IpStack
 {
     public interface IIpStackConnector
     {
-        IpStackDetails GetIpStackResponse(string ipAddress);
+        IpStackDetails GetIpStackDetails(string ipAddress);
     }
 }

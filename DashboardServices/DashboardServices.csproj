@@ -46,6 +46,7 @@
     <Compile Include="DashboardService.cs" />
     <Compile Include="DashboardSettingsWrapper.cs" />
     <Compile Include="IDashboardService.cs" />
+    <Compile Include="NewsSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

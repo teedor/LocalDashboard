@@ -17,7 +17,7 @@ namespace Connectors.IpStack
             _ipStackConnectorSettings = ipStackConnectorSettings;
         }
 
-        public IpStackDetails GetIpStackResponse(string ipAddress)
+        public IpStackDetails GetIpStackDetails(string ipAddress)
         {
             // using http because free subscription doesn't support https
             // hard-coded base url because it doesn't change

@@ -64,6 +64,28 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Connectors.NewsApiOrg\Connectors.NewsApiOrg.csproj">
+      <Project>{2C8FBD31-087F-4682-8820-027E0F6C819E}</Project>
+      <Name>Connectors.NewsApiOrg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connectors.OpenWeatherMap\Connectors.OpenWeatherMap.csproj">
+      <Project>{E8648AC0-15C4-49D2-8082-6C49400FE4EF}</Project>
+      <Name>Connectors.OpenWeatherMap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connectors.TimeZoneDb\Connectors.TimeZoneDb.csproj">
+      <Project>{37624543-8D68-4CB5-A765-D197321BB2EB}</Project>
+      <Name>Connectors.TimeZoneDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DashboardServices\DashboardServices.csproj">
+      <Project>{32161EA9-5D68-4130-A750-B1C1E86DC02C}</Project>
+      <Name>DashboardServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IpStackConnector\Connectors.IpStack.csproj">
+      <Project>{734515D2-3290-4846-8891-509CD83672BB}</Project>
+      <Name>Connectors.IpStack</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

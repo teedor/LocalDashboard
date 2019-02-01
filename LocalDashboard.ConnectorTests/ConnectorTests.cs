@@ -24,7 +24,7 @@ namespace LocalDashboard.ConnectorTests
             var ipStackConnector = new IpStackConnector(settings);
 
             // Act
-            var result = ipStackConnector.GetIpStackResponse("185.69.144.1");
+            var result = ipStackConnector.GetIpStackDetails("185.69.144.1");
 
             // Assert
             Assert.IsNotNull(result);
