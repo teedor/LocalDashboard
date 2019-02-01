@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Connectors.NewsApiOrg\Connectors.NewsApiOrg.csproj">
+      <Project>{2C8FBD31-087F-4682-8820-027E0F6C819E}</Project>
+      <Name>Connectors.NewsApiOrg</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Connectors.OpenWeatherMap\Connectors.OpenWeatherMap.csproj">
       <Project>{E8648AC0-15C4-49D2-8082-6C49400FE4EF}</Project>
       <Name>Connectors.OpenWeatherMap</Name>

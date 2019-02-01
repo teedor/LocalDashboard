@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Connectors.OpenWeatherMap;
 using HelperClasses;
 using Connectors.TimeZoneDb;
+using Connectors.NewsApiOrg;
 
 namespace LocalDashboard.ConnectorTests
 {
@@ -54,6 +55,20 @@ namespace LocalDashboard.ConnectorTests
 
             // Act
             var result = timeZoneDbConnector.GetTimeZoneDbDetails("15", "2");
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void NewsApiOrgConnectorTest()
+        {
+            // Arrange
+            var settings = new DashboardSettingsWrapper();
+            var newsApiOrgConnector = new NewsApiOrgConnector(settings);
+
+            // Act
+            var result = newsApiOrgConnector.GetNewsArticles("GB", 0);
 
             // Assert
             Assert.IsNotNull(result);
