@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Connectors.OpenWeatherMap;
 
 namespace LocalDashboard.ConnectorTests
 {
@@ -31,10 +32,10 @@ namespace LocalDashboard.ConnectorTests
         {
             // Arrange
             var settings = new DashboardSettingsWrapper();
-            var ipStackConnector = new IpStackConnector(settings);
+            var openWeatherMapConnector = new OpenWeatherMapConnector(settings);
 
             // Act
-            var result = ipStackConnector.GetIpStackResponse("185.69.144.1");
+            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2");
 
             // Assert
             Assert.IsNotNull(result);

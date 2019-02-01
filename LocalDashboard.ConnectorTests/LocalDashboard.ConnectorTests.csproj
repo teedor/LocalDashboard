@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Connectors.OpenWeatherMap\Connectors.OpenWeatherMap.csproj">
+      <Project>{E8648AC0-15C4-49D2-8082-6C49400FE4EF}</Project>
+      <Name>Connectors.OpenWeatherMap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DashboardServices\DashboardServices.csproj">
       <Project>{32161EA9-5D68-4130-A750-B1C1E86DC02C}</Project>
       <Name>DashboardServices</Name>

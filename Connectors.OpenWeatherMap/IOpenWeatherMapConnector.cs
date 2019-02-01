@@ -8,6 +8,6 @@ namespace Connectors.OpenWeatherMap
 {
     public interface IOpenWeatherMapConnector
     {
-        OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string logitude);
+        OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string longitude);
     }
 }

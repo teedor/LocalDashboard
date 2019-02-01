@@ -25,8 +25,8 @@
     public class Main
     {
         public decimal temp { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
+        public decimal pressure { get; set; }
+        public decimal humidity { get; set; }
         public decimal temp_min { get; set; }
         public decimal temp_max { get; set; }
     }
@@ -34,7 +34,7 @@
     public class Wind
     {
         public decimal speed { get; set; }
-        public int deg { get; set; }
+        public decimal deg { get; set; }
     }
 
     public class Clouds
@@ -46,7 +46,7 @@
     {
         public int type { get; set; }
         public int id { get; set; }
-        public float message { get; set; }
+        public decimal message { get; set; }
         public string country { get; set; }
         public int sunrise { get; set; }
         public int sunset { get; set; }

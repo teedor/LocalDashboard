@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +17,22 @@ namespace Connectors.OpenWeatherMap
             _openWeatherMapConnectorSettings = openWeatherMapConnectorSettings;
         }
 
-        public OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string logitude)
+        public OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string longitude)
         {
-            throw new NotImplementedException();
+            var restClient = new RestClient("https://api.openweathermap.org/data/2.5/weather");
+            var request = new RestRequest($"?lat={latitude}&lon={longitude}&APPID={_openWeatherMapConnectorSettings.OpenWeatherMapApiKey}&units=metric", Method.GET);
+            var response = restClient.Execute(request);
+            var openWeatherMapApiResponseModel = JsonConvert.DeserializeObject<OpenWeatherMapApiResponseModel>(response.Content);
+
+            var result = new OpenWeatherMapDetails
+            {
+                Description = openWeatherMapApiResponseModel.weather[0].main,
+                Temperature = openWeatherMapApiResponseModel.main.temp,
+                SunRiseTime = openWeatherMapApiResponseModel.sys.sunrise,
+                SunSetTime = openWeatherMapApiResponseModel.sys.sunset
+            };
+
+            return result;
         }
     }
 }
