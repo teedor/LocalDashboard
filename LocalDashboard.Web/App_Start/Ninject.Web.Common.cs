@@ -5,7 +5,12 @@ namespace LocalDashboard.Web.App_Start
 {
     using System;
     using System.Web;
+    using Connectors.IpStack;
+    using Connectors.NewsApiOrg;
+    using Connectors.OpenWeatherMap;
+    using Connectors.TimeZoneDb;
     using DashboardServices;
+    using HelperClasses;
     using LocalDashboard.Web.Wrappers;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
@@ -63,8 +68,17 @@ namespace LocalDashboard.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IHttpContextWrapper>().To<Wrappers.HttpContextWrapper>();
-            kernel.Bind<IDashboardService>().To<DashboardService>();
+            kernel.Bind<IHttpContextWrapper>().To<Wrappers.HttpContextWrapper>().InSingletonScope();
+            kernel.Bind<IDashboardService>().To<DashboardService>().InSingletonScope();
+            kernel.Bind<IIpStackConnector>().To<IpStackConnector>().InSingletonScope();
+            kernel.Bind<INewsApiOrgConnector>().To<NewsApiOrgConnector>().InSingletonScope();
+            kernel.Bind<IOpenWeatherMapConnector>().To<OpenWeatherMapConnector>().InSingletonScope();
+            kernel.Bind<ITimeZoneDbConnector>().To<TimeZoneDbConnector>().InSingletonScope();
+            kernel.Bind<IDateHelper>().To<DateHelper>().InSingletonScope();
+            kernel.Bind<IIpStackConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<INewsApiOrgConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<IOpenWeatherMapConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<ITimeZoneDbConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
         }        
     }
 }
