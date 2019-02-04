@@ -81,6 +81,10 @@
       <Project>{32161EA9-5D68-4130-A750-B1C1E86DC02C}</Project>
       <Name>DashboardServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HelperClasses\HelperClasses.csproj">
+      <Project>{518A2471-15B5-4475-8715-C2ECD6EAE073}</Project>
+      <Name>HelperClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IpStackConnector\Connectors.IpStack.csproj">
       <Project>{734515D2-3290-4846-8891-509CD83672BB}</Project>
       <Name>Connectors.IpStack</Name>

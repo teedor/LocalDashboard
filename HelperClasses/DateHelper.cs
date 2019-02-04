@@ -14,5 +14,10 @@ namespace HelperClasses
             dtDateTime = dtDateTime.AddSeconds(unixDateInteger).ToLocalTime();
             return dtDateTime;
         }
+
+        public bool IsTheSunUp(DateTime localTime, DateTime sunrise, DateTime sunset)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

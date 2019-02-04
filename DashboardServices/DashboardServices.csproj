@@ -62,6 +62,10 @@
       <Project>{37624543-8D68-4CB5-A765-D197321BB2EB}</Project>
       <Name>Connectors.TimeZoneDb</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HelperClasses\HelperClasses.csproj">
+      <Project>{518A2471-15B5-4475-8715-C2ECD6EAE073}</Project>
+      <Name>HelperClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IpStackConnector\Connectors.IpStack.csproj">
       <Project>{734515D2-3290-4846-8891-509CD83672BB}</Project>
       <Name>Connectors.IpStack</Name>

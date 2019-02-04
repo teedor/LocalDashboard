@@ -9,5 +9,7 @@ namespace HelperClasses
     public interface IDateHelper
     {
         DateTime UnixIntToDateTime(int unixDateInteger);
+
+        bool IsTheSunUp(DateTime localTime, DateTime sunrise, DateTime sunset);
     }
 }
