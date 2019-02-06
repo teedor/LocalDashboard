@@ -93,15 +93,17 @@ namespace LocalDashbord.UnitTests
             _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset);
             _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
-            Assert.AreEqual(result.LocalTime, timeZoneDbDetails.LocalTime);
-            Assert.AreEqual(result.WeatherDescription, openWeatherMapDetails.Description);
-            Assert.AreEqual(result.Temperature, openWeatherMapDetails.Temperature);
+            Assert.AreEqual(timeZoneDbDetails.LocalTime, result.LocalTime);
+            Assert.AreEqual(openWeatherMapDetails.Description, result.WeatherDescription);
+            Assert.AreEqual(openWeatherMapDetails.Temperature, result.Temperature);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(result.NewsMessage));
+            Assert.IsTrue(string.IsNullOrWhiteSpace(result.WeatherMessage));
 
-            Assert.AreEqual(result.NewsSummaries.First().Source, newsArticles.First().Source);
-            Assert.AreEqual(result.NewsSummaries.First().Url, newsArticles.First().Url);
-            Assert.AreEqual(result.NewsSummaries.First().Title, newsArticles.First().Title);
-            Assert.AreEqual(result.NewsSummaries.First().Description, newsArticles.First().Description);
-            Assert.AreEqual($"{result.NewsSummaries.First().PublishedDateLocalTime:yyyy-MM-dd HH:MM:ss}", newsArticles.First().PublishedDateLocalTime);
+            Assert.AreEqual(newsArticles.First().Source, result.NewsSummaries.First().Source);
+            Assert.AreEqual(newsArticles.First().Url, result.NewsSummaries.First().Url);
+            Assert.AreEqual(newsArticles.First().Title, result.NewsSummaries.First().Title);
+            Assert.AreEqual(newsArticles.First().Description, result.NewsSummaries.First().Description);
+            Assert.AreEqual($"{newsArticles.First().PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}", result.NewsSummaries.First().PublishedDateLocalTime);
         }
 
         [Test]
@@ -215,17 +217,17 @@ namespace LocalDashbord.UnitTests
             _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset);
             _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
-            Assert.AreEqual(result.LocalTime, timeZoneDbDetails.LocalTime);
-            Assert.AreEqual(result.WeatherDescription, openWeatherMapDetails.Description);
-            Assert.AreEqual(result.Temperature, openWeatherMapDetails.Temperature);
-
-            Assert.AreEqual(result.NewsSummaries.First().Source, newsArticles.First().Source);
-            Assert.AreEqual(result.NewsSummaries.First().Url, newsArticles.First().Url);
-            Assert.AreEqual(result.NewsSummaries.First().Title, newsArticles.First().Title);
-            Assert.AreEqual(result.NewsSummaries.First().Description, newsArticles.First().Description);
-            Assert.AreEqual($"{result.NewsSummaries.First().PublishedDateLocalTime:yyyy-MM-dd HH:MM:ss}", newsArticles.First().PublishedDateLocalTime);
-
+            Assert.AreEqual(timeZoneDbDetails.LocalTime, result.LocalTime);
+            Assert.AreEqual(openWeatherMapDetails.Description, result.WeatherDescription);
+            Assert.AreEqual(openWeatherMapDetails.Temperature, result.Temperature);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(result.NewsMessage));
             Assert.AreEqual("The sun has set so the risk of shark attack is higher", result.WeatherMessage);
+
+            Assert.AreEqual(newsArticles.First().Source, result.NewsSummaries.First().Source);
+            Assert.AreEqual(newsArticles.First().Url, result.NewsSummaries.First().Url);
+            Assert.AreEqual(newsArticles.First().Title, result.NewsSummaries.First().Title);
+            Assert.AreEqual(newsArticles.First().Description, result.NewsSummaries.First().Description);
+            Assert.AreEqual($"{newsArticles.First().PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}", result.NewsSummaries.First().PublishedDateLocalTime);
         }
     }
 }

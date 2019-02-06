@@ -3,11 +3,7 @@ using Connectors.NewsApiOrg;
 using Connectors.OpenWeatherMap;
 using Connectors.TimeZoneDb;
 using HelperClasses;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DashboardServices
 {
@@ -30,7 +26,35 @@ namespace DashboardServices
 
         public DashboardModel GetDashboardModel(string ipAddress)
         {
-            return new DashboardModel { LocalTime = DateTime.Now };
+            var ipStackDetails = _ipStackConnector.GetIpStackDetails(ipAddress);
+            var isNorthKorea = ipStackDetails.CountryCode == "KP";
+            var timeZoneDbDetails = _timeZoneDbConnector.GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
+            var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
+            var newsArticles = !isNorthKorea
+                ? _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset)
+                : null;
+            var isTheSunUp = _dateHelper.IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
+
+            var result = new DashboardModel
+            {
+                LocalTime = timeZoneDbDetails.LocalTime,
+                Temperature = openWeatherMapDetails.Temperature,
+                WeatherDescription = openWeatherMapDetails.Description,
+                NewsMessage = isNorthKorea ? "It would be pointless to display the news because it would be censored propaganda anyway." : string.Empty,
+                WeatherMessage = isTheSunUp ? string.Empty : "The sun has set so the risk of shark attack is higher",
+                NewsSummaries = newsArticles != null
+                    ? newsArticles.Select(x => new NewsSummary
+                        {
+                            Description = x.Description,
+                            Source = x.Source,
+                            Title = x.Title,
+                            Url = x.Url,
+                            PublishedDateLocalTime = $"{x.PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}"
+                        }).ToList()
+                    : null
+            };
+
+            return result;
         }
     }
 }

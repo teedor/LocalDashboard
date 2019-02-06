@@ -17,7 +17,7 @@ namespace HelperClasses
 
         public bool IsTheSunUp(DateTime localTime, DateTime sunrise, DateTime sunset)
         {
-            throw new NotImplementedException();
+            return localTime >= sunrise && localTime < sunset;
         }
     }
 }
