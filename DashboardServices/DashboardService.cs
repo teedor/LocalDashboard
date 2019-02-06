@@ -37,6 +37,7 @@ namespace DashboardServices
 
             var result = new DashboardModel
             {
+                IpAddress = ipAddress,
                 LocalTime = timeZoneDbDetails.LocalTime,
                 Temperature = openWeatherMapDetails.Temperature,
                 WeatherDescription = openWeatherMapDetails.Description,

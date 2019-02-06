@@ -8,6 +8,7 @@ namespace DashboardServices
 {
     public class DashboardModel
     {
+        public string IpAddress { get; set; }
         public DateTime LocalTime { get; set; }
         public string WeatherDescription { get; set; }
         public decimal Temperature { get; set; }

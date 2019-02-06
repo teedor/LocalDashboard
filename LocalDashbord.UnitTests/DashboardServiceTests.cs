@@ -39,6 +39,8 @@ namespace LocalDashbord.UnitTests
         public void GetDashboardModel_WhenCalled_ReturnsDashboardModel()
         {
             // Arrange
+            var ipAddress = "1.1.1.1";
+
             var ipStackDetails = new IpStackDetails
             {
                 CountryCode = "GB",
@@ -84,15 +86,16 @@ namespace LocalDashbord.UnitTests
             _dateHelper.IsTheSunUp(Arg.Any<DateTime>(), Arg.Any<DateTime>(), Arg.Any<DateTime>()).Returns(true);
 
             // Act
-            var result = _dashboardService.GetDashboardModel("1.1.1.1");
+            var result = _dashboardService.GetDashboardModel(ipAddress);
 
             // Assert
-            _ipStackConnector.Received().GetIpStackDetails("1.1.1.1");
+            _ipStackConnector.Received().GetIpStackDetails(ipAddress);
             _timeZoneDbConnector.Received().GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
             _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
             _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset);
             _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
+            Assert.AreEqual(ipAddress, result.IpAddress);
             Assert.AreEqual(timeZoneDbDetails.LocalTime, result.LocalTime);
             Assert.AreEqual(openWeatherMapDetails.Description, result.WeatherDescription);
             Assert.AreEqual(openWeatherMapDetails.Temperature, result.Temperature);
@@ -110,6 +113,8 @@ namespace LocalDashbord.UnitTests
         public void GetDashboardModel_WhenInNorthKorea_ReturnsDashboardModelWithNoNewsMessage()
         {
             // Arrange
+            var ipAddress = "1.1.1.1";
+
             var ipStackDetails = new IpStackDetails
             {
                 CountryCode = "KP",
@@ -141,15 +146,16 @@ namespace LocalDashbord.UnitTests
             _dateHelper.IsTheSunUp(Arg.Any<DateTime>(), Arg.Any<DateTime>(), Arg.Any<DateTime>()).Returns(true);
 
             // Act
-            var result = _dashboardService.GetDashboardModel("1.1.1.1");
+            var result = _dashboardService.GetDashboardModel(ipAddress);
 
             // Assert
-            _ipStackConnector.Received().GetIpStackDetails("1.1.1.1");
+            _ipStackConnector.Received().GetIpStackDetails(ipAddress);
             _timeZoneDbConnector.Received().GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
             _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
             _newsApiOrgConnector.DidNotReceive().GetNewsArticles(Arg.Any<string>(), Arg.Any<int>());
             _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
+            Assert.AreEqual(ipAddress, result.IpAddress);
             Assert.AreEqual(result.LocalTime, timeZoneDbDetails.LocalTime);
             Assert.AreEqual(result.WeatherDescription, openWeatherMapDetails.Description);
             Assert.AreEqual(result.Temperature, openWeatherMapDetails.Temperature);
@@ -163,6 +169,8 @@ namespace LocalDashbord.UnitTests
         public void GetDashboardModel_SunIsDown_DisplaySharkWarning()
         {
             // Arrange
+            var ipAddress = "1.1.1.1";
+
             var ipStackDetails = new IpStackDetails
             {
                 CountryCode = "GB",
@@ -208,15 +216,16 @@ namespace LocalDashbord.UnitTests
             _dateHelper.IsTheSunUp(Arg.Any<DateTime>(), Arg.Any<DateTime>(), Arg.Any<DateTime>()).Returns(false);
 
             // Act
-            var result = _dashboardService.GetDashboardModel("1.1.1.1");
+            var result = _dashboardService.GetDashboardModel(ipAddress);
 
             // Assert
-            _ipStackConnector.Received().GetIpStackDetails("1.1.1.1");
+            _ipStackConnector.Received().GetIpStackDetails(ipAddress);
             _timeZoneDbConnector.Received().GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
             _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
             _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset);
             _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
+            Assert.AreEqual(ipAddress, result.IpAddress);
             Assert.AreEqual(timeZoneDbDetails.LocalTime, result.LocalTime);
             Assert.AreEqual(openWeatherMapDetails.Description, result.WeatherDescription);
             Assert.AreEqual(openWeatherMapDetails.Temperature, result.Temperature);
