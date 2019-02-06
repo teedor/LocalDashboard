@@ -1,13 +1,15 @@
-﻿@model DashboardServices.DashboardModel
+﻿@using Newtonsoft.Json
+@model DashboardServices.DashboardModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row">
     <div class="col-md-12">
-        <dl class="dl-horizontal">
-            <dt>Local time</dt>
-            <dd>@($"{Model.LocalTime:dddd d MMMM yyyy}")</dd>
-        </dl>
+        <pre>
+            <code>
+                @JsonConvert.SerializeObject(Model, Formatting.Indented)
+            </code>
+        </pre>
     </div>
 </div>

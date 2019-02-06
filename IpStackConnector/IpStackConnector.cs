@@ -19,6 +19,12 @@ namespace Connectors.IpStack
 
         public IpStackDetails GetIpStackDetails(string ipAddress)
         {
+            // for localhost testing
+            if (ipAddress == "::1")
+            {
+                ipAddress = "62.31.103.154";
+            }
+
             // using http because free subscription doesn't support https
             // hard-coded base url because it doesn't change
             var restClient = new RestClient("http://api.ipstack.com/");
