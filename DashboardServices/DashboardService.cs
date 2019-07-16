@@ -29,11 +29,13 @@ namespace DashboardServices
             var ipStackDetails = _ipStackConnector.GetIpStackDetails(ipAddress);
             var isNorthKorea = ipStackDetails.CountryCode == "KP";
             var timeZoneDbDetails = _timeZoneDbConnector.GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
+            var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
             var newsArticles = !isNorthKorea
-                ? _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset)
+                ? _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode)
                 : null;
-            var isTheSunUp = _dateHelper.IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
+            var sunriseTime = _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunRiseTime).AddSeconds(timeZoneDbDetails.GmtOffset);
+            var sunsetTime = _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunSetTime).AddSeconds(timeZoneDbDetails.GmtOffset);
+            var isTheSunUp = _dateHelper.IsTheSunUp(timeZoneDbDetails.LocalTime, sunriseTime, sunsetTime);
 
             var result = new DashboardModel
             {
@@ -50,7 +52,7 @@ namespace DashboardServices
                             Source = x.Source,
                             Title = x.Title,
                             Url = x.Url,
-                            PublishedDateLocalTime = $"{x.PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}"
+                            PublishedDateLocalTime = $"{x.PublishedDateLocalTime.AddSeconds(timeZoneDbDetails.GmtOffset):yyyy-MM-dd HH:mm:ss}"
                         }).ToList()
                     : null
             };

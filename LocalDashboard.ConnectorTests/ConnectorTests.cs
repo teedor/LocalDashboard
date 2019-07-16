@@ -36,10 +36,10 @@ namespace LocalDashboard.ConnectorTests
             // Arrange
             var settings = new DashboardSettingsWrapper();
             var dateHelper = new DateHelper();
-            var openWeatherMapConnector = new OpenWeatherMapConnector(settings, dateHelper);
+            var openWeatherMapConnector = new OpenWeatherMapConnector(settings);
 
             // Act
-            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2", 3600);
+            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2");
 
             // Assert
             Assert.IsNotNull(result);
@@ -68,7 +68,7 @@ namespace LocalDashboard.ConnectorTests
             var newsApiOrgConnector = new NewsApiOrgConnector(settings);
 
             // Act
-            var result = newsApiOrgConnector.GetNewsArticles("GB", 0);
+            var result = newsApiOrgConnector.GetNewsArticles("GB");
 
             // Assert
             Assert.IsNotNull(result);
