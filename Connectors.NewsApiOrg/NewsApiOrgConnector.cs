@@ -17,7 +17,7 @@ namespace Connectors.NewsApiOrg
             _newsApiOrgConnectorSettings = newsApiOrgConnectorSettings;
         }
 
-        public List<NewsArticle> GetNewsArticles(string countryCode)
+        public List<NewsArticle> GetNewsArticles(string countryCode, int gmtOffset)
         {
             var restClient = new RestClient("https://newsapi.org/v2/");
             var request = new RestRequest($"top-headlines?country={countryCode}&apiKey={_newsApiOrgConnectorSettings.NewsApiOrgApiKey}", Method.GET);
@@ -33,7 +33,7 @@ namespace Connectors.NewsApiOrg
                     Url = item.url,
                     Title = item.title,
                     Description = item.description,
-                    PublishedDateLocalTime = Convert.ToDateTime(item.publishedAt)
+                    PublishedDateLocalTime = Convert.ToDateTime(item.publishedAt).AddSeconds(gmtOffset)
                 });
             }
 

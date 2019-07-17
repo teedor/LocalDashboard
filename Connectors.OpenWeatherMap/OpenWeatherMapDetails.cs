@@ -8,8 +8,8 @@ namespace Connectors.OpenWeatherMap
 {
     public class OpenWeatherMapDetails
     {
-        public int SunSetTime { get; set; }
-        public int SunRiseTime { get; set; }
+        public DateTime SunSetTime { get; set; }
+        public DateTime SunRiseTime { get; set; }
         public string Description { get; set; }
         public decimal Temperature { get; set; }
     }
