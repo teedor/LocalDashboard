@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalDashbord.UnitTests
+namespace LocalDashboard.UnitTests
 {
     [TestFixture]
     public class DashboardServiceTests

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDashboard.Web", "LocalDashboard.Web\LocalDashboard.Web.csproj", "{04EAAFB9-1F16-45C7-86F4-2D459DFE8F82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDashbord.UnitTests", "LocalDashbord.UnitTests\LocalDashbord.UnitTests.csproj", "{AD1FD827-688A-4A9B-B3AF-95955764B7B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDashboard.UnitTests", "LocalDashbord.UnitTests\LocalDashboard.UnitTests.csproj", "{AD1FD827-688A-4A9B-B3AF-95955764B7B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardServices", "DashboardServices\DashboardServices.csproj", "{32161EA9-5D68-4130-A750-B1C1E86DC02C}"
 EndProject

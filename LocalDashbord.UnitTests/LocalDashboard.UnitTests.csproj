@@ -9,8 +9,8 @@
     <ProjectGuid>{AD1FD827-688A-4A9B-B3AF-95955764B7B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LocalDashbord.UnitTests</RootNamespace>
-    <AssemblyName>LocalDashbord.UnitTests</AssemblyName>
+    <RootNamespace>LocalDashboard.UnitTests</RootNamespace>
+    <AssemblyName>LocalDashboard.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
