@@ -19,25 +19,7 @@ namespace Connectors.NewsApiOrg
 
         public List<NewsArticle> GetNewsArticles(string countryCode, int gmtOffset)
         {
-            var restClient = new RestClient("https://newsapi.org/v2/");
-            var request = new RestRequest($"top-headlines?country={countryCode}&apiKey={_newsApiOrgConnectorSettings.NewsApiOrgApiKey}", Method.GET);
-            var response = restClient.Execute(request);
-            var newsApiOrgApiResponseModel = JsonConvert.DeserializeObject<NewsApiOrgApiResponseModel>(response.Content);
-
-            var result = new List<NewsArticle>();
-            foreach (var item in newsApiOrgApiResponseModel.articles)
-            {
-                result.Add(new NewsArticle
-                {
-                    Source = item.source.name,
-                    Url = item.url,
-                    Title = item.title,
-                    Description = item.description,
-                    PublishedDateLocalTime = Convert.ToDateTime(item.publishedAt).AddSeconds(gmtOffset)
-                });
-            }
-
-            return result;
+            throw new NotImplementedException();
         }
     }
 }

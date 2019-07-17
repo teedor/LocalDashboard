@@ -20,7 +20,7 @@ namespace HorribleLocalDashboard.Controllers
             }
 
             // get location details from ipstack
-            var restClient = new RestClient("http://api.ipstack.com/");
+            var restClient = new RestClient("http://api.ipstack.com/"); // using http because free subscription doesn't support https
             var request = new RestRequest($"{ipAddress}?access_key=bd72f9d78cdf9a9d4e86ce94f588469e", Method.GET);
             var response = restClient.Execute(request);
 

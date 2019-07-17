@@ -22,18 +22,7 @@ namespace Connectors.TimeZoneDb
 
         public TimeZoneDbDetails GetTimeZoneDbDetails(string latitude, string longitude)
         {
-            var restClient = new RestClient("https://api.timezonedb.com/v2.1/");
-            var request = new RestRequest($"get-time-zone?key={_timeZoneDbConnectorSettings.TimeZoneDbApiKey}&by=position&lat={latitude}&format=json&lng={longitude}", Method.GET);
-            var response = restClient.Execute(request);
-            var timeZoneDbApiResponseModel = JsonConvert.DeserializeObject<TimeZoneDbApiResponseModel>(response.Content);
-
-            var result = new TimeZoneDbDetails
-            {
-                LocalTime = _dateHelper.UnixIntToDateTime(timeZoneDbApiResponseModel.timestamp),
-                GmtOffset = timeZoneDbApiResponseModel.gmtOffset
-            };
-
-            return result;
+            throw new NotImplementedException();
         }
     }
 }
