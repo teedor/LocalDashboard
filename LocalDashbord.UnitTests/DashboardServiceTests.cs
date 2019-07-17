@@ -61,13 +61,13 @@ namespace LocalDashbord.UnitTests
 
             var openWeatherMapDetails = new OpenWeatherMapDetails
             {
-                SunRiseTime = 345234,
-                SunSetTime = 34564365,
+                SunRiseTime = localTime.AddHours(-1),
+                SunSetTime = localTime.AddHours(-1),
                 Description = "Rain",
                 Temperature = 23
             };
 
-            _openWeatherMapConnector.GetOpenWeatherMapDetails(Arg.Any<string>(), Arg.Any<string>()).Returns(openWeatherMapDetails);
+            _openWeatherMapConnector.GetOpenWeatherMapDetails(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>()).Returns(openWeatherMapDetails);
 
             var newsArticles = new List<NewsArticle>
             {
@@ -81,13 +81,9 @@ namespace LocalDashbord.UnitTests
                 }
             };
 
-            _newsApiOrgConnector.GetNewsArticles(Arg.Any<string>()).Returns(newsArticles);
+            _newsApiOrgConnector.GetNewsArticles(Arg.Any<string>(), Arg.Any<int>()).Returns(newsArticles);
 
             _dateHelper.IsTheSunUp(Arg.Any<DateTime>(), Arg.Any<DateTime>(), Arg.Any<DateTime>()).Returns(true);
-            var sunrise = new DateTime(2018, 1, 1, 6, 0, 0);
-            var sunset = new DateTime(2018, 1, 1, 18, 30, 0);
-            _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunRiseTime).Returns(sunrise);
-            _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunSetTime).Returns(sunset);
 
             // Act
             var result = _dashboardService.GetDashboardModel(ipAddress);
@@ -95,9 +91,9 @@ namespace LocalDashbord.UnitTests
             // Assert
             _ipStackConnector.Received().GetIpStackDetails(ipAddress);
             _timeZoneDbConnector.Received().GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode);
-            _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, sunrise, sunset);
+            _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
+            _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset);
+            _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
             Assert.AreEqual(ipAddress, result.IpAddress);
             Assert.AreEqual(timeZoneDbDetails.LocalTime, result.LocalTime);
@@ -139,19 +135,15 @@ namespace LocalDashbord.UnitTests
 
             var openWeatherMapDetails = new OpenWeatherMapDetails
             {
-                SunRiseTime = 345234,
-                SunSetTime = 34564365,
+                SunRiseTime = localTime.AddHours(-1),
+                SunSetTime = localTime.AddHours(-1),
                 Description = "Rain",
                 Temperature = 23
             };
 
-            _openWeatherMapConnector.GetOpenWeatherMapDetails(Arg.Any<string>(), Arg.Any<string>()).Returns(openWeatherMapDetails);
+            _openWeatherMapConnector.GetOpenWeatherMapDetails(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>()).Returns(openWeatherMapDetails);
 
             _dateHelper.IsTheSunUp(Arg.Any<DateTime>(), Arg.Any<DateTime>(), Arg.Any<DateTime>()).Returns(true);
-            var sunrise = new DateTime(2018, 1, 1, 6, 0, 0);
-            var sunset = new DateTime(2018, 1, 1, 18, 30, 0);
-            _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunRiseTime).Returns(sunrise);
-            _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunSetTime).Returns(sunset);
 
             // Act
             var result = _dashboardService.GetDashboardModel(ipAddress);
@@ -159,9 +151,9 @@ namespace LocalDashbord.UnitTests
             // Assert
             _ipStackConnector.Received().GetIpStackDetails(ipAddress);
             _timeZoneDbConnector.Received().GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            _newsApiOrgConnector.DidNotReceive().GetNewsArticles(Arg.Any<string>());
-            _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, sunrise, sunset);
+            _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
+            _newsApiOrgConnector.DidNotReceive().GetNewsArticles(Arg.Any<string>(), Arg.Any<int>());
+            _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
             Assert.AreEqual(ipAddress, result.IpAddress);
             Assert.AreEqual(result.LocalTime, timeZoneDbDetails.LocalTime);
@@ -199,13 +191,13 @@ namespace LocalDashbord.UnitTests
 
             var openWeatherMapDetails = new OpenWeatherMapDetails
             {
-                SunRiseTime = 56346345,
-                SunSetTime = 476537544,
+                SunRiseTime = localTime.AddHours(-1),
+                SunSetTime = localTime.AddHours(-1),
                 Description = "Rain",
                 Temperature = 23
             };
 
-            _openWeatherMapConnector.GetOpenWeatherMapDetails(Arg.Any<string>(), Arg.Any<string>()).Returns(openWeatherMapDetails);
+            _openWeatherMapConnector.GetOpenWeatherMapDetails(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>()).Returns(openWeatherMapDetails);
 
             var newsArticles = new List<NewsArticle>
             {
@@ -219,13 +211,9 @@ namespace LocalDashbord.UnitTests
                 }
             };
 
-            _newsApiOrgConnector.GetNewsArticles(Arg.Any<string>()).Returns(newsArticles);
+            _newsApiOrgConnector.GetNewsArticles(Arg.Any<string>(), Arg.Any<int>()).Returns(newsArticles);
 
             _dateHelper.IsTheSunUp(Arg.Any<DateTime>(), Arg.Any<DateTime>(), Arg.Any<DateTime>()).Returns(false);
-            var sunrise = new DateTime(2018, 1, 1, 6, 0, 0);
-            var sunset = new DateTime(2018, 1, 1, 18, 30, 0);
-            _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunRiseTime).Returns(sunrise);
-            _dateHelper.UnixIntToDateTime(openWeatherMapDetails.SunSetTime).Returns(sunset);
 
             // Act
             var result = _dashboardService.GetDashboardModel(ipAddress);
@@ -233,9 +221,9 @@ namespace LocalDashbord.UnitTests
             // Assert
             _ipStackConnector.Received().GetIpStackDetails(ipAddress);
             _timeZoneDbConnector.Received().GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode);
-            _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, sunrise, sunset);
+            _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timeZoneDbDetails.GmtOffset);
+            _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timeZoneDbDetails.GmtOffset);
+            _dateHelper.Received().IsTheSunUp(timeZoneDbDetails.LocalTime, openWeatherMapDetails.SunRiseTime, openWeatherMapDetails.SunSetTime);
 
             Assert.AreEqual(ipAddress, result.IpAddress);
             Assert.AreEqual(timeZoneDbDetails.LocalTime, result.LocalTime);

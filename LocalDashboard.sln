@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDashboard.Web", "LocalDashboard.Web\LocalDashboard.Web.csproj", "{04EAAFB9-1F16-45C7-86F4-2D459DFE8F82}"
 EndProject
@@ -24,8 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectors.NewsApiOrg", "Connectors.NewsApiOrg\Connectors.NewsApiOrg.csproj", "{2C8FBD31-087F-4682-8820-027E0F6C819E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorribleLocalDashboard", "HorribleLocalDashboard\HorribleLocalDashboard.csproj", "{CD02012C-D40C-4575-A693-501FEB5607D5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDashboard.ConsoleApp1", "LocalDashboard.ConsoleApp1\LocalDashboard.ConsoleApp1.csproj", "{09AFC8E0-BCDE-4C8D-BC79-3E0A7DCE6708}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,10 +75,6 @@ Global
 		{CD02012C-D40C-4575-A693-501FEB5607D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD02012C-D40C-4575-A693-501FEB5607D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD02012C-D40C-4575-A693-501FEB5607D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09AFC8E0-BCDE-4C8D-BC79-3E0A7DCE6708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09AFC8E0-BCDE-4C8D-BC79-3E0A7DCE6708}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09AFC8E0-BCDE-4C8D-BC79-3E0A7DCE6708}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09AFC8E0-BCDE-4C8D-BC79-3E0A7DCE6708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,6 +8,6 @@ namespace Connectors.NewsApiOrg
 {
     public interface INewsApiOrgConnector
     {
-        List<NewsArticle> GetNewsArticles(string countryCode);
+        List<NewsArticle> GetNewsArticles(string countryCode, int gmtOffset);
     }
 }
