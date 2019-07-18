@@ -43,16 +43,7 @@ namespace DashboardServices
                 WeatherDescription = openWeatherMapDetails.Description,
                 NewsMessage = isNorthKorea ? "It would be pointless to display the news because it would be censored propaganda anyway." : string.Empty,
                 WeatherMessage = isTheSunUp ? string.Empty : "The sun has set so the risk of shark attack is higher",
-                NewsSummaries = newsArticles != null
-                    ? newsArticles.Select(x => new NewsSummary
-                        {
-                            Description = x.Description,
-                            Source = x.Source,
-                            Title = x.Title,
-                            Url = x.Url,
-                            PublishedDateLocalTime = $"{x.PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}"
-                        }).ToList()
-                    : null
+                NewsArticles = newsArticles 
             };
 
             return result;
