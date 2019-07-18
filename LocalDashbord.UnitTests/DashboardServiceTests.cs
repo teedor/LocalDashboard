@@ -102,11 +102,11 @@ namespace LocalDashboard.UnitTests
             Assert.IsTrue(string.IsNullOrWhiteSpace(result.NewsMessage));
             Assert.IsTrue(string.IsNullOrWhiteSpace(result.WeatherMessage));
 
-            Assert.AreEqual(newsArticles.First().Source, result.NewsSummaries.First().Source);
-            Assert.AreEqual(newsArticles.First().Url, result.NewsSummaries.First().Url);
-            Assert.AreEqual(newsArticles.First().Title, result.NewsSummaries.First().Title);
-            Assert.AreEqual(newsArticles.First().Description, result.NewsSummaries.First().Description);
-            Assert.AreEqual($"{newsArticles.First().PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}", result.NewsSummaries.First().PublishedDateLocalTime);
+            Assert.AreEqual(newsArticles.First().Source, result.NewsArticles.First().Source);
+            Assert.AreEqual(newsArticles.First().Url, result.NewsArticles.First().Url);
+            Assert.AreEqual(newsArticles.First().Title, result.NewsArticles.First().Title);
+            Assert.AreEqual(newsArticles.First().Description, result.NewsArticles.First().Description);
+            Assert.AreEqual($"{newsArticles.First().PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}", result.NewsArticles.First().PublishedDateLocalTime);
         }
 
         [Test]
@@ -160,7 +160,7 @@ namespace LocalDashboard.UnitTests
             Assert.AreEqual(result.WeatherDescription, openWeatherMapDetails.Description);
             Assert.AreEqual(result.Temperature, openWeatherMapDetails.Temperature);
 
-            Assert.IsNull(result.NewsSummaries);
+            Assert.IsNull(result.NewsArticles);
 
             Assert.AreEqual("It would be pointless to display the news because it would be censored propaganda anyway.", result.NewsMessage);
         }
@@ -232,11 +232,11 @@ namespace LocalDashboard.UnitTests
             Assert.IsTrue(string.IsNullOrWhiteSpace(result.NewsMessage));
             Assert.AreEqual("The sun has set so the risk of shark attack is higher", result.WeatherMessage);
 
-            Assert.AreEqual(newsArticles.First().Source, result.NewsSummaries.First().Source);
-            Assert.AreEqual(newsArticles.First().Url, result.NewsSummaries.First().Url);
-            Assert.AreEqual(newsArticles.First().Title, result.NewsSummaries.First().Title);
-            Assert.AreEqual(newsArticles.First().Description, result.NewsSummaries.First().Description);
-            Assert.AreEqual($"{newsArticles.First().PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}", result.NewsSummaries.First().PublishedDateLocalTime);
+            Assert.AreEqual(newsArticles.First().Source, result.NewsArticles.First().Source);
+            Assert.AreEqual(newsArticles.First().Url, result.NewsArticles.First().Url);
+            Assert.AreEqual(newsArticles.First().Title, result.NewsArticles.First().Title);
+            Assert.AreEqual(newsArticles.First().Description, result.NewsArticles.First().Description);
+            Assert.AreEqual($"{newsArticles.First().PublishedDateLocalTime:yyyy-MM-dd HH:mm:ss}", result.NewsArticles.First().PublishedDateLocalTime);
         }
     }
 }

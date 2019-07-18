@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Connectors.NewsApiOrg;
 
 namespace DashboardServices
 {
@@ -14,6 +15,6 @@ namespace DashboardServices
         public decimal Temperature { get; set; }
         public string NewsMessage { get; set; }
         public string WeatherMessage { get; set; }
-        public List<NewsSummary> NewsSummaries { get; set; }
+        public List<NewsArticle> NewsArticles { get; set; }
     }
 }
