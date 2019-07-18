@@ -11,14 +11,8 @@ using System.Threading.Tasks;
 
 namespace DashboardServices
 {
-    public class DashboardSettingsWrapper : IIpStackConnectorSettings, IOpenWeatherMapConnectorSettings, ITimeZoneDbConnectorSettings, INewsApiOrgConnectorSettings
+    public class DashboardSettingsWrapper 
     {
-        public string IpStackAccessKey => ConfigurationManager.AppSettings["IpStackAccessKey"];
 
-        public string OpenWeatherMapApiKey => ConfigurationManager.AppSettings["OpenWeatherMapApiKey"];
-
-        public string TimeZoneDbApiKey => ConfigurationManager.AppSettings["TimeZoneDbApiKey"];
-
-        public string NewsApiOrgApiKey => ConfigurationManager.AppSettings["NewsApiOrgApiKey"];
     }
 }
