@@ -32,7 +32,7 @@ namespace LocalDashboard.UnitTests
             _openWeatherMapConnector = Substitute.For<IOpenWeatherMapConnector>();
             _timeZoneDbConnector = Substitute.For<ITimeZoneDbConnector>();
             _dateHelper = Substitute.For<IDateHelper>();
-            _dashboardService = new DashboardService(_ipStackConnector, _newsApiOrgConnector, _openWeatherMapConnector, _timeZoneDbConnector, _dateHelper);
+            _dashboardService = new DashboardService();
         }
 
         [Test]

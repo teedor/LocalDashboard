@@ -21,7 +21,8 @@ namespace LocalDashboard.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = _dashBoardService.GetDashboardModel(_httpContextWrapper.IpAddress);
+            var ipAddress = _httpContextWrapper.IpAddress == "::1" ? "62.31.103.154" : _httpContextWrapper.IpAddress;
+            var model = _dashBoardService.GetDashboardModel(ipAddress);
             return View(model);
         }
 
