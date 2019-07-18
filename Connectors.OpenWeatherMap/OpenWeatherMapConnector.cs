@@ -23,6 +23,21 @@ namespace Connectors.OpenWeatherMap
         public OpenWeatherMapDetails GetOpenWeatherMapDetails(string latitude, string longitude, int gmtOffset)
         {
             throw new NotImplementedException();
+
+            //var restClient = new RestClient("https://api.openweathermap.org/data/2.5/weather");
+            //var request = new RestRequest($"?lat={latitude}&lon={longitude}&APPID={_openWeatherMapConnectorSettings.OpenWeatherMapApiKey}&units=metric", Method.GET);
+            //var response = restClient.Execute(request);
+            //var openWeatherMapApiResponseModel = JsonConvert.DeserializeObject<OpenWeatherMapApiResponseModel>(response.Content);
+
+            //var result = new OpenWeatherMapDetails
+            //{
+            //    Description = openWeatherMapApiResponseModel.weather[0].main,
+            //    Temperature = openWeatherMapApiResponseModel.main.temp,
+            //    SunRiseTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunrise).AddSeconds(gmtOffset),
+            //    SunSetTime = _dateHelper.UnixIntToDateTime(openWeatherMapApiResponseModel.sys.sunset).AddSeconds(gmtOffset)
+            //};
+
+            //return result;
         }
     }
 }

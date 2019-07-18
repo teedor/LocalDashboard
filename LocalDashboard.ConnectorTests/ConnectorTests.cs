@@ -32,21 +32,6 @@ namespace LocalDashboard.ConnectorTests
         }
 
         [Test]
-        public void OpenWeatherMapConnectorTest()
-        {
-            // Arrange
-            var settings = new DashboardSettingsWrapper();
-            var dateHelper = new DateHelper();
-            var openWeatherMapConnector = new OpenWeatherMapConnector(settings, dateHelper);
-
-            // Act
-            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2", 3600);
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [Test]
         public void TimeZoneDbConnectorTest()
         {
             // Arrange
@@ -56,6 +41,21 @@ namespace LocalDashboard.ConnectorTests
 
             // Act
             var result = timeZoneDbConnector.GetTimeZoneDbDetails("15", "2");
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void OpenWeatherMapConnectorTest()
+        {
+            // Arrange
+            var settings = new DashboardSettingsWrapper();
+            var dateHelper = new DateHelper();
+            var openWeatherMapConnector = new OpenWeatherMapConnector(settings, dateHelper);
+
+            // Act
+            var result = openWeatherMapConnector.GetOpenWeatherMapDetails("15", "2", 3600);
 
             // Assert
             Assert.IsNotNull(result);

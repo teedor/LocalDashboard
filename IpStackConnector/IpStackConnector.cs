@@ -20,6 +20,24 @@ namespace Connectors.IpStack
         public IpStackDetails GetIpStackDetails(string ipAddress)
         {
             throw new NotImplementedException();
+
+            //// using http because free subscription doesn't support https
+            //// hard-coded base url because it doesn't change
+
+            //var restClient = new RestClient("http://api.ipstack.com/");
+            //var request = new RestRequest($"{ipAddress}?access_key={_ipStackConnectorSettings.IpStackAccessKey}", Method.GET);
+            //var response = restClient.Execute(request);
+
+            //var ipStackApiResponse = JsonConvert.DeserializeObject<IpStackApiResponse>(response.Content);
+
+            //var result = new IpStackDetails
+            //{
+            //    CountryCode = ipStackApiResponse.country_code,
+            //    Latitude = ipStackApiResponse.latitude,
+            //    Longitude = ipStackApiResponse.longitude
+            //};
+
+            //return result;
         }
     }
 }

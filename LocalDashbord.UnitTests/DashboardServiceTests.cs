@@ -17,21 +17,11 @@ namespace LocalDashboard.UnitTests
     [TestFixture]
     public class DashboardServiceTests
     {
-        private IIpStackConnector _ipStackConnector;
-        private INewsApiOrgConnector _newsApiOrgConnector;
-        private IOpenWeatherMapConnector _openWeatherMapConnector;
-        private ITimeZoneDbConnector _timeZoneDbConnector;
         private DashboardService _dashboardService;
-        private IDateHelper _dateHelper;
 
         [SetUp]
         public void SetUp()
         {
-            _ipStackConnector = Substitute.For<IIpStackConnector>();
-            _newsApiOrgConnector = Substitute.For<INewsApiOrgConnector>();
-            _openWeatherMapConnector = Substitute.For<IOpenWeatherMapConnector>();
-            _timeZoneDbConnector = Substitute.For<ITimeZoneDbConnector>();
-            _dateHelper = Substitute.For<IDateHelper>();
             _dashboardService = new DashboardService();
         }
 
