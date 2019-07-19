@@ -98,5 +98,23 @@ namespace LocalDashboard.UnitTests
             _newsApiOrgConnector.Received().GetNewsArticles(ipStackDetails.CountryCode, timezoneDbDetails.GmtOffset);
             _openWeatherMapConnector.Received().GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timezoneDbDetails.GmtOffset);
         }
+
+        [Test]
+        public void GetDashboardModel_IpStackFails_ShowMessage()
+        {
+            // Arrange
+            const string ipAddress = "1.2.3.4";
+
+            _ipStackConnector.When(x => x.GetIpStackDetails(Arg.Any<string>()))
+                .Do(x => throw new ApplicationException("this connection is shit"));
+
+            // Act
+            var result = _dashboardService.GetDashboardModel(ipAddress);
+
+            // Assert
+            Assert.IsTrue(result.SpecialMessages.Any(x => x == "The IP Stack Connector Failed so no dashboard today"));
+
+            _ipStackConnector.Received().GetIpStackDetails(ipAddress);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Connectors.IpStack;
+﻿using System;
+using System.Collections.Generic;
+using Connectors.IpStack;
 using Connectors.NewsApiOrg;
 using Connectors.OpenWeatherMap;
 using Connectors.TimeZoneDb;
@@ -26,26 +28,44 @@ namespace DashboardServices
 
         public DashboardModel GetDashboardModel(string ipAddress)
         {
-            var ipStackDetails = _ipStackConnector.GetIpStackDetails(ipAddress);
-            var timezoneDbDetails = _timeZoneDbConnector.GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-            var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timezoneDbDetails.GmtOffset);
-            var newsArticles = _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode, timezoneDbDetails.GmtOffset);
+            DashboardModel dashboardModel = new DashboardModel();
 
-            var dashboardModel = new DashboardModel
+            try
             {
-                IpAddress = ipAddress,
-                CountryCode = ipStackDetails.CountryCode,
-                Latitude = ipStackDetails.Latitude,
-                Longitude = ipStackDetails.Longitude,
-                LocalTime = timezoneDbDetails.LocalTime,
-                WeatherDescription = openWeatherMapDetails.Description,
-                NewsArticles = newsArticles,
-                Sunrise = openWeatherMapDetails.SunRiseTime,
-                Sunset = openWeatherMapDetails.SunSetTime,
-                Temperature = openWeatherMapDetails.Temperature
-            };
+                var ipStackDetails = _ipStackConnector.GetIpStackDetails(ipAddress);
+                var timezoneDbDetails =
+                    _timeZoneDbConnector.GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
+                var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude,
+                    ipStackDetails.Longitude, timezoneDbDetails.GmtOffset);
+                var newsArticles =
+                    _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode, timezoneDbDetails.GmtOffset);
 
-            _specialRulesEngine.ApplyRules(dashboardModel);
+                dashboardModel = new DashboardModel
+                {
+                    IpAddress = ipAddress,
+                    CountryCode = ipStackDetails.CountryCode,
+                    Latitude = ipStackDetails.Latitude,
+                    Longitude = ipStackDetails.Longitude,
+                    LocalTime = timezoneDbDetails.LocalTime,
+                    WeatherDescription = openWeatherMapDetails.Description,
+                    NewsArticles = newsArticles,
+                    Sunrise = openWeatherMapDetails.SunRiseTime,
+                    Sunset = openWeatherMapDetails.SunSetTime,
+                    Temperature = openWeatherMapDetails.Temperature
+                };
+
+                _specialRulesEngine.ApplyRules(dashboardModel);
+            }
+            catch (ApplicationException)
+            {
+                return new DashboardModel
+                {
+                    SpecialMessages = new List<string>
+                    {
+                        "The IP Stack Connector Failed so no dashboard today"
+                    }
+                };
+            }
 
             return dashboardModel;
         }
