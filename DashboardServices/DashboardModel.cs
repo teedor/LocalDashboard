@@ -13,11 +13,12 @@ namespace DashboardServices
         public DateTime LocalTime { get; set; }
         public string WeatherDescription { get; set; }
         public decimal Temperature { get; set; }
-        public string NewsMessage { get; set; }
-        public string WeatherMessage { get; set; }
         public List<NewsArticle> NewsArticles { get; set; }
         public string CountryCode { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public DateTime Sunrise { get; set; }
+        public DateTime Sunset { get; set; }
+        public List<string> SpecialMessages { get; set; }
     }
 }

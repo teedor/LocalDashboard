@@ -10,12 +10,14 @@ namespace HelperClasses
     {
         public bool IsTheSunUp(DateTime localTime, DateTime sunrise, DateTime sunset)
         {
-            throw new NotImplementedException();
+            return localTime >= sunrise && localTime < sunset;
         }
 
         public DateTime UnixIntToDateTime(int unixDateInteger)
         {
-            throw new NotImplementedException();
+            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixDateInteger).ToLocalTime();
+            return dtDateTime;
         }
     }
 }

@@ -11,17 +11,15 @@ namespace HelperClassesUnitTests
     [TestFixture]
     public class DateHelperTests
     {
-        [Test]
-        public void UnixIntToDateTimeTest()
+        [TestCase(1563548884, "2019-07-19 16:08:04")]
+        [TestCase(1532528563, "2018-07-25 15:22:43")]
+        public void UnixIntToDateTimeTest(int unixDateInteger, string expectedDateTime)
         {
-            // Arrange
-            var unixDateInteger = 1549022518;
-
             // Act
             var result = new DateHelper().UnixIntToDateTime(unixDateInteger);
 
             // Assert
-            Assert.AreEqual(new DateTime(2019, 2, 1, 12, 1, 58), result);
+            Assert.AreEqual(Convert.ToDateTime(expectedDateTime), result);
         }
 
         [Test]
@@ -64,6 +62,20 @@ namespace HelperClassesUnitTests
                 Sunrise = new DateTime(2019, 1, 1, 6, 0, 0),
                 Sunset = new DateTime(2019, 1, 1, 18, 0, 0),
                 ExpectedResult = false
+            },
+            new TestData
+            {
+                LocalTime = new DateTime(2019, 1, 1, 18, 0, 0),
+                Sunrise = new DateTime(2019, 1, 1, 6, 0, 0),
+                Sunset = new DateTime(2019, 1, 1, 18, 0, 0),
+                ExpectedResult = false
+            },
+            new TestData
+            {
+                LocalTime = new DateTime(2019, 1, 1, 6, 0, 0),
+                Sunrise = new DateTime(2019, 1, 1, 6, 0, 0),
+                Sunset = new DateTime(2019, 1, 1, 18, 0, 0),
+                ExpectedResult = true
             }
         };
     }

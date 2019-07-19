@@ -75,10 +75,11 @@ namespace LocalDashboard.Web.App_Start
             kernel.Bind<IOpenWeatherMapConnector>().To<OpenWeatherMapConnector>().InSingletonScope();
             kernel.Bind<ITimeZoneDbConnector>().To<TimeZoneDbConnector>().InSingletonScope();
             kernel.Bind<IDateHelper>().To<DateHelper>().InSingletonScope();
-            //kernel.Bind<IIpStackConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
-            //kernel.Bind<INewsApiOrgConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
-            //kernel.Bind<IOpenWeatherMapConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
-            //kernel.Bind<ITimeZoneDbConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<ISpecialRulesEngine>().To<SpecialRulesEngine>();
+            kernel.Bind<IIpStackConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<INewsApiOrgConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<IOpenWeatherMapConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
+            kernel.Bind<ITimeZoneDbConnectorSettings>().To<DashboardSettingsWrapper>().InSingletonScope();
         }        
     }
 }

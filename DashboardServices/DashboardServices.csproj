@@ -46,7 +46,9 @@
     <Compile Include="DashboardService.cs" />
     <Compile Include="DashboardSettingsWrapper.cs" />
     <Compile Include="IDashboardService.cs" />
+    <Compile Include="ISpecialRulesEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialRulesEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Connectors.NewsApiOrg\Connectors.NewsApiOrg.csproj">

@@ -16,7 +16,7 @@ namespace LocalDashboard.ConnectorTests
     [TestFixture]
     public class ConnectorTests
     {
-        /*
+        
         [Test]
         public void IpStackConnectorTest()
         {
@@ -74,6 +74,5 @@ namespace LocalDashboard.ConnectorTests
             // Assert
             Assert.IsNotNull(result);
         }
-        */
     }
 }
