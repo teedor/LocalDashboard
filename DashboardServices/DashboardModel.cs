@@ -16,5 +16,8 @@ namespace DashboardServices
         public string NewsMessage { get; set; }
         public string WeatherMessage { get; set; }
         public List<NewsArticle> NewsArticles { get; set; }
+        public string CountryCode { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

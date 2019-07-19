@@ -9,9 +9,23 @@ namespace DashboardServices
 {
     public class DashboardService : IDashboardService
     {
+        private readonly IIpStackConnector _ipStackConnector;
+        public DashboardService(IIpStackConnector ipStackConnector)
+        {
+            _ipStackConnector = ipStackConnector;
+        }
+
         public DashboardModel GetDashboardModel(string ipAddress)
         {
-            throw new System.NotImplementedException();
+            var ipStackDetails = _ipStackConnector.GetIpStackDetails(ipAddress);
+
+            return new DashboardModel
+            {
+                IpAddress = ipAddress,
+                CountryCode = ipStackDetails.CountryCode,
+                Latitude = ipStackDetails.Latitude,
+                Longitude = ipStackDetails.Longitude
+            };
         }
     }
 }

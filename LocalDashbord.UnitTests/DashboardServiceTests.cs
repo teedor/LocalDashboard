@@ -17,45 +17,42 @@ namespace LocalDashboard.UnitTests
     [TestFixture]
     public class DashboardServiceTests
     {
+        private IIpStackConnector _ipStackConnector;
         private DashboardService _dashboardService;
 
         [SetUp]
         public void SetUp()
         {
-            _dashboardService = new DashboardService();
+            _ipStackConnector = Substitute.For<IIpStackConnector>();
+            _dashboardService = new DashboardService(_ipStackConnector);
         }
 
         [Test]
         public void GetDashboardModel_WhenCalled_ReturnsDashboardModel()
         {
             // Arrange
+            const string ipAddress = "1.2.3.4";
+
+            // mocked ip stack details
+            var ipStackDetails = new IpStackDetails
+            {
+                CountryCode = "Bob",
+                Latitude = "23.554",
+                Longitude = "4.65"
+            };
+
+            _ipStackConnector.GetIpStackDetails(Arg.Any<string>()).Returns(ipStackDetails);
 
             // Act
+            var result = _dashboardService.GetDashboardModel(ipAddress);
 
             // Assert
+            Assert.AreEqual(ipAddress, result.IpAddress);
+            Assert.AreEqual(ipStackDetails.CountryCode, result.CountryCode);
+            Assert.AreEqual(ipStackDetails.Latitude, result.Latitude);
+            Assert.AreEqual(ipStackDetails.Longitude, result.Longitude);
 
-        }
-
-        [Test]
-        public void GetDashboardModel_WhenInNorthKorea_ReturnsDashboardModelWithNoNewsMessage()
-        {
-            // Arrange
-
-            // Act
-
-            // Assert
-
-        }
-
-        [Test]
-        public void GetDashboardModel_SunIsDown_DisplaySharkWarning()
-        {
-            // Arrange
-
-            // Act
-
-            // Assert
-
+            _ipStackConnector.Received(1).GetIpStackDetails(ipAddress);
         }
     }
 }
