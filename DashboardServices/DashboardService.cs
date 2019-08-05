@@ -32,14 +32,13 @@ namespace DashboardServices
 
             try
             {
+                // get all the data from the APIS
                 var ipStackDetails = _ipStackConnector.GetIpStackDetails(ipAddress);
-                var timezoneDbDetails =
-                    _timeZoneDbConnector.GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
-                var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude,
-                    ipStackDetails.Longitude, timezoneDbDetails.GmtOffset);
-                var newsArticles =
-                    _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode, timezoneDbDetails.GmtOffset);
+                var timezoneDbDetails = _timeZoneDbConnector.GetTimeZoneDbDetails(ipStackDetails.Latitude, ipStackDetails.Longitude);
+                var openWeatherMapDetails = _openWeatherMapConnector.GetOpenWeatherMapDetails(ipStackDetails.Latitude, ipStackDetails.Longitude, timezoneDbDetails.GmtOffset);
+                var newsArticles = _newsApiOrgConnector.GetNewsArticles(ipStackDetails.CountryCode, timezoneDbDetails.GmtOffset);
 
+                // build the dashboardModel from the aquired data
                 dashboardModel = new DashboardModel
                 {
                     IpAddress = ipAddress,
@@ -54,6 +53,7 @@ namespace DashboardServices
                     Temperature = openWeatherMapDetails.Temperature
                 };
 
+                // Apply the busness rules
                 _specialRulesEngine.ApplyRules(dashboardModel);
             }
             catch (ApplicationException)
